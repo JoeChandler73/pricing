@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  # Kibana
+  kibana:
+    image: kibana:9.0.2
+    environment:
+      - ELASTICSEARCH_URL=elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - pricing-network
+  
+  # Elastic Search
+  elasticsearch:
+    image: elasticsearch:9.0.2
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - pricing-network
+  
+  # RabbitMq
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"    # AMQP port
+      - "15672:15672"  # Management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: password
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    restart: unless-stopped
+    networks:
+      - pricing-network
+  
+  # PriceManager
+  price-manager:
+    build:
+      context: ./src
+      dockerfile: PriceManager/Dockerfile
+    container_name: price-manager
+    ports:
+      - "8080:80"
+    depends_on:
+      - rabbitmq
+      - kibana
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_URLS=http://+:80
+    networks:
+      - pricing-network
+        
+  # PriceReader
+  price-reader:
+    build:
+      context: ./src
+      dockerfile: PriceReader/Dockerfile
+    container_name: price-reader
+    ports:
+      - "8081:80"
+    depends_on:
+      - rabbitmq
+      - kibana
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_URLS=http://+:80
+    networks:
+      - pricing-network
+        
+  # PriceWriter
+  price-writer:
+    build:
+      context: ./src
+      dockerfile: PriceWriter/Dockerfile
+    container_name: price-writer
+    ports:
+      - "8082:80"
+    depends_on:
+      - rabbitmq
+      - kibana
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_URLS=http://+:80
+    networks:
+      - pricing-network
+
+volumes:
+  elasticsearch-data:
+  rabbitmq_data:
+
+networks:
+  pricing-network:
+    driver: bridge

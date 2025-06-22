@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B0C92ED8-B768-4F45-9382-5D87006A971B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceManager", "src\PriceManager\PriceManager.csproj", "{C3004BEB-7D59-4E11-A662-77B5AC3A51CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceReader", "src\PriceReader\PriceReader.csproj", "{485092A8-DDF0-4D6B-9916-B7750582C435}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceWriter", "src\PriceWriter\PriceWriter.csproj", "{305264EF-771A-49D3-AC7F-F0C5933843CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "compose", "compose", "{1CB30425-05C5-4B68-8AE3-84F74C8F9D55}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pricing.ServiceDefaults", "src\Pricing.ServiceDefaults\Pricing.ServiceDefaults.csproj", "{ACCE15BB-8006-4FBD-A083-A53587F0BAF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3004BEB-7D59-4E11-A662-77B5AC3A51CE} = {B0C92ED8-B768-4F45-9382-5D87006A971B}
+		{485092A8-DDF0-4D6B-9916-B7750582C435} = {B0C92ED8-B768-4F45-9382-5D87006A971B}
+		{305264EF-771A-49D3-AC7F-F0C5933843CE} = {B0C92ED8-B768-4F45-9382-5D87006A971B}
+		{ACCE15BB-8006-4FBD-A083-A53587F0BAF3} = {B0C92ED8-B768-4F45-9382-5D87006A971B}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3004BEB-7D59-4E11-A662-77B5AC3A51CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3004BEB-7D59-4E11-A662-77B5AC3A51CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3004BEB-7D59-4E11-A662-77B5AC3A51CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3004BEB-7D59-4E11-A662-77B5AC3A51CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{485092A8-DDF0-4D6B-9916-B7750582C435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{485092A8-DDF0-4D6B-9916-B7750582C435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{485092A8-DDF0-4D6B-9916-B7750582C435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{485092A8-DDF0-4D6B-9916-B7750582C435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{305264EF-771A-49D3-AC7F-F0C5933843CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{305264EF-771A-49D3-AC7F-F0C5933843CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{305264EF-771A-49D3-AC7F-F0C5933843CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{305264EF-771A-49D3-AC7F-F0C5933843CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACCE15BB-8006-4FBD-A083-A53587F0BAF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACCE15BB-8006-4FBD-A083-A53587F0BAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACCE15BB-8006-4FBD-A083-A53587F0BAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACCE15BB-8006-4FBD-A083-A53587F0BAF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+@PriceReader_HostAddress = http://localhost:5107
+
+GET {{PriceReader_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
