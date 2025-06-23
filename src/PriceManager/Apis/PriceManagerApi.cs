@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PriceManager.Messages;
 using PriceManager.Model;
 
 namespace PriceManager.Apis;
@@ -7,16 +8,18 @@ public static class PriceManagerApi
 {
     public static IEndpointRouteBuilder MapPriceManagerApi(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/message", GetMessage).WithName("GetMessage");
+        app.MapPut("subscribe", Subscribe).WithName("Subscribe");
         
         return app;
     }
 
-    public static async Task<string> GetMessage(
-       [FromServices] PriceManagerServices services)
+    private static async Task Subscribe(
+        [FromServices] PriceManagerServices services,
+        PriceSubscribe message)
     {
-        services.Logger.LogInformation("Test!");
+        services.Logger.LogInformation("Received PriceSubscribe message: {Message}", message); 
+        services.Logger.LogInformation("Publishing PriceSubscribe message to the message bus");
         
-        return await Task.FromResult("Hello from PriceManager.");
+        await services.MessageBus.SendAsync(message);
     }
 }

@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Messaging.Infrastructure\Messaging.Infrastructure.csproj" />
     <ProjectReference Include="..\Pricing.ServiceDefaults\Pricing.ServiceDefaults.csproj" />
   </ItemGroup>
 

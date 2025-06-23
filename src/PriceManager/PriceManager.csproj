@@ -21,9 +21,13 @@
     <Content Include="..\..\.dockerignore">
       <Link>.dockerignore</Link>
     </Content>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Messaging.Infrastructure\Messaging.Infrastructure.csproj" />
     <ProjectReference Include="..\Pricing.ServiceDefaults\Pricing.ServiceDefaults.csproj" />
   </ItemGroup>
 
