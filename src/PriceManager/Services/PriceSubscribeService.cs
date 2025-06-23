@@ -1,10 +1,12 @@
 using Messaging.Application;
 using PriceManager.Messages;
+using PriceManager.Model;
 
 namespace PriceManager.Services;
 
 public class PriceSubscribeService(
     IMessageBus _messageBus,
+    ISubscriptionManager _subscriptionManager,
     ILogger<PriceSubscribeService> _logger) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -16,6 +18,8 @@ public class PriceSubscribeService(
     private async Task HandlePriceSubscribe(PriceSubscribe message)
     {
         _logger.LogInformation("Handling PriceSubscribe for symbol: {Symbol}", message.Symbol);
+        
+        _subscriptionManager.Add(message.Symbol);
         
         await Task.CompletedTask;
     }

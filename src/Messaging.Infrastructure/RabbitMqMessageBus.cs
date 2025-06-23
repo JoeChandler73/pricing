@@ -52,7 +52,7 @@ public class RabbitMqMessageBus(IOptions<RabbitMqOptions> _options) : IMessageBu
             Uri = new Uri(_options.Value.ConnectionString),
             ClientProvidedName = _options.Value.serviceName
         };
-
+        
         _connection = await factory.CreateConnectionAsync();
         _channel = await _connection.CreateChannelAsync();
         _queueName = $"{_options.Value.serviceName}.queue";

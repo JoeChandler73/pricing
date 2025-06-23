@@ -3,11 +3,15 @@ WORKDIR /app
 
 COPY PriceManager/*.csproj ./PriceManager/
 COPY Pricing.ServiceDefaults/*.csproj ./Pricing.ServiceDefaults/
+COPY Messaging.Application/*.csproj ./Messaging.Application/
+COPY Messaging.Infrastructure/*.csproj ./Messaging.Infrastructure/
 
 RUN dotnet restore PriceManager/
 
 COPY PriceManager/ ./PriceManager/
 COPY Pricing.ServiceDefaults ./Pricing.ServiceDefaults/
+COPY Messaging.Application ./Messaging.Application/
+COPY Messaging.Infrastructure ./Messaging.Infrastructure/
 
 WORKDIR /app/PriceManager
 RUN dotnet publish -c Release -o out
