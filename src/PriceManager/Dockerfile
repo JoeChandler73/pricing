@@ -5,6 +5,8 @@ COPY PriceManager/*.csproj ./PriceManager/
 COPY Pricing.ServiceDefaults/*.csproj ./Pricing.ServiceDefaults/
 COPY Messaging.Application/*.csproj ./Messaging.Application/
 COPY Messaging.Infrastructure/*.csproj ./Messaging.Infrastructure/
+COPY Caching.Application/*.csproj ./Caching.Application/
+COPY Caching.Infrastructure/*.csproj ./Caching.Infrastructure/
 
 RUN dotnet restore PriceManager/
 
@@ -12,6 +14,8 @@ COPY PriceManager/ ./PriceManager/
 COPY Pricing.ServiceDefaults ./Pricing.ServiceDefaults/
 COPY Messaging.Application ./Messaging.Application/
 COPY Messaging.Infrastructure ./Messaging.Infrastructure/
+COPY Caching.Application ./Caching.Application/
+COPY Caching.Infrastructure ./Caching.Infrastructure/
 
 WORKDIR /app/PriceManager
 RUN dotnet publish -c Release -o out

@@ -5,6 +5,8 @@ COPY PriceReader/*.csproj ./PriceReader/
 COPY Pricing.ServiceDefaults/*.csproj ./Pricing.ServiceDefaults/
 COPY Messaging.Application/*.csproj ./Messaging.Application/
 COPY Messaging.Infrastructure/*.csproj ./Messaging.Infrastructure/
+COPY Caching.Application/*.csproj ./Caching.Application/
+COPY Caching.Infrastructure/*.csproj ./Caching.Infrastructure/
 
 RUN dotnet restore PriceReader/
 
@@ -12,6 +14,8 @@ COPY PriceReader/ ./PriceReader/
 COPY Pricing.ServiceDefaults ./Pricing.ServiceDefaults/
 COPY Messaging.Application ./Messaging.Application/
 COPY Messaging.Infrastructure ./Messaging.Infrastructure/
+COPY Caching.Application ./Caching.Application/
+COPY Caching.Infrastructure ./Caching.Infrastructure/
 
 WORKDIR /app/PriceReader
 RUN dotnet publish -c Release -o out
