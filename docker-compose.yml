@@ -59,8 +59,6 @@ services:
       kibana:
           condition: service_started
     environment:
-      - RabbitMq__ConnectionString=amqp://guest:guest@rabbitmq:5672
-      - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_URLS=http://+:80
     networks:
       - pricing-network
@@ -79,8 +77,6 @@ services:
       kibana:
         condition: service_started
     environment:
-      - RabbitMq__ConnectionString=amqp://guest:guest@rabbitmq:5672
-      - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_URLS=http://+:80
     networks:
       - pricing-network
@@ -99,8 +95,6 @@ services:
       kibana:
         condition: service_started
     environment:
-      - RabbitMq__ConnectionString=amqp://guest:guest@rabbitmq:5672
-      - ASPNETCORE_ENVIRONMENT=Development
       - DOTNET_URLS=http://+:80
     networks:
       - pricing-network

@@ -27,11 +27,11 @@ public static class Extensions
     
     public static WebApplication AddSwaggerPages(this WebApplication app)
     {
-        if (app.Environment.IsDevelopment())
-        {
+        //if (app.Environment.IsDevelopment())
+        //{
             app.UseSwagger();
             app.UseSwaggerUI();
-        }
+        //}
         
         return app;
     }
