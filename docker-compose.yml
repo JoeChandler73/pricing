@@ -45,6 +45,15 @@ services:
     networks:
       - pricing-network
   
+  # Redis
+  redis-server:
+    container_name: redis-server
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - pricing-network
+  
   # PriceManager
   price-manager:
     build:
@@ -58,6 +67,8 @@ services:
         condition: service_healthy
       kibana:
           condition: service_started
+      redis-server:
+        condition: service_started
     environment:
       - DOTNET_URLS=http://+:80
     networks:
@@ -76,6 +87,8 @@ services:
         condition: service_healthy
       kibana:
         condition: service_started
+      redis-server:
+        condition: service_started
     environment:
       - DOTNET_URLS=http://+:80
     networks:
@@ -93,6 +106,8 @@ services:
       rabbitmq:
         condition: service_healthy
       kibana:
+        condition: service_started
+      redis-server:
         condition: service_started
     environment:
       - DOTNET_URLS=http://+:80
