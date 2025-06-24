@@ -1,7 +1,3 @@
-using System.Text;
-using System.Text.Json;
-using Messaging.Application;
-
 namespace Messaging.Infrastructure;
 
 public class JsonMessageSerialzer : IMessageSerializer

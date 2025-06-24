@@ -1,10 +1,3 @@
-using System.Text;
-using System.Text.Json;
-using Messaging.Application;
-using Microsoft.Extensions.Options;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-
 namespace Messaging.Infrastructure;
 
 public class RabbitMqMessageBus(
