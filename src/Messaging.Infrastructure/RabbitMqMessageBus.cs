@@ -7,7 +7,9 @@ using RabbitMQ.Client.Events;
 
 namespace Messaging.Infrastructure;
 
-public class RabbitMqMessageBus(IOptions<RabbitMqOptions> _options) : IMessageBus
+public class RabbitMqMessageBus(
+    IMessageSerializer _messageSerializer,
+    IOptions<RabbitMqOptions> _options) : IMessageBus
 {
     private IConnection _connection;
     private IChannel _channel;
@@ -21,8 +23,7 @@ public class RabbitMqMessageBus(IOptions<RabbitMqOptions> _options) : IMessageBu
         
         await _channel.ExchangeDeclareAsync(exchangeName, ExchangeType.Fanout, true);
         
-        var messageBody = JsonSerializer.Serialize(message);
-        var body = Encoding.UTF8.GetBytes(messageBody);
+        var body = _messageSerializer.Serialize(message);
         var props = new BasicProperties
         {
             Type = typeof(TMessage).Name,
@@ -92,7 +93,6 @@ public class RabbitMqMessageBus(IOptions<RabbitMqOptions> _options) : IMessageBu
             try
             {
                 var body = args.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
                 var messageTypeName = args.BasicProperties.Type;
 
                 if (!string.IsNullOrEmpty(messageTypeName))
@@ -101,7 +101,7 @@ public class RabbitMqMessageBus(IOptions<RabbitMqOptions> _options) : IMessageBu
                     
                     if (messageType != null && _handlers.TryGetValue(messageTypeName, out var handlerList))
                     {
-                        var deserializedMessage = JsonSerializer.Deserialize(message, messageType);
+                        var deserializedMessage = _messageSerializer.Deserialize(body, messageType);
                         if (deserializedMessage != null)
                         {
                             var tasks = handlerList.Select(handler => handler(deserializedMessage));
