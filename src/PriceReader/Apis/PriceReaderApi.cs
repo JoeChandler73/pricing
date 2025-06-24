@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using PriceReader.Model;
-
 namespace PriceReader.Apis;
 
 public static class PriceReaderApi

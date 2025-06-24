@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using PriceManager.Messages;
-using PriceManager.Model;
-
 namespace PriceManager.Apis;
 
 public static class PriceManagerApi

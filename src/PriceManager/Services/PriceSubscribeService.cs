@@ -1,7 +1,3 @@
-using Messaging.Application;
-using PriceManager.Messages;
-using PriceManager.Model;
-
 namespace PriceManager.Services;
 
 public class PriceSubscribeService(

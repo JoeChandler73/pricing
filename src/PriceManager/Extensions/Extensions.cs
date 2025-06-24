@@ -1,8 +1,3 @@
-using Messaging.Application;
-using Messaging.Infrastructure;
-using PriceManager.Model;
-using PriceManager.Services;
-
 namespace PriceManager.Extensions;
 
 public static class Extensions

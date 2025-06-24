@@ -1,6 +1,3 @@
-using Messaging.Application;
-using PriceWriter.Messages;
-
 namespace PriceWriter.Services;
 
 public class PriceWriterService(

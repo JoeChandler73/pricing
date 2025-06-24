@@ -1,5 +1,3 @@
-using Messaging.Application;
-
 namespace PriceManager.Model;
 
 public class PriceManagerServices(

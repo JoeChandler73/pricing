@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using PriceWriter.Model;
-
 namespace PriceWriter.Apis;
 
 public static class PriceWriterApi

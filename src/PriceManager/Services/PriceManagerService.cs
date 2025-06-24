@@ -1,7 +1,3 @@
-using Messaging.Application;
-using PriceManager.Messages;
-using PriceManager.Model;
-
 namespace PriceManager.Services;
 
 public class PriceManagerService(
@@ -14,11 +10,21 @@ public class PriceManagerService(
 
         while (!stoppingToken.IsCancellationRequested && await timer.WaitForNextTickAsync(stoppingToken))
         {
-            foreach (var symbol in _subscriptionManager.GetSymbols())
+            foreach (var lastPrice in _subscriptionManager.GetLastPrices())
             {
-                var price = new Price(symbol, 100, DateTime.Now);
-                await _messageBus.SendAsync(price);
+                await _messageBus.SendAsync(GetNewPrice(lastPrice));
             }
         }
+    }
+
+    private static Price GetNewPrice(Price price)
+    {
+        return new Price(price.Symbol, GetNewPrice(price.Mid), DateTime.UtcNow);
+    }
+
+    private static decimal GetNewPrice(decimal price)
+    {
+        var adjustment = (decimal)Random.Shared.NextDouble() - 0.5m;
+        return price + adjustment;
     }
 }

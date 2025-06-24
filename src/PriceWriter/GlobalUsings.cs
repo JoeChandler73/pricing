@@ -1,3 +1,10 @@
+global using Messaging.Application;
+global using Messaging.Infrastructure;
+global using Microsoft.AspNetCore.Mvc;
 global using PriceWriter.Apis;
 global using PriceWriter.Extensions;
+global using PriceWriter.Messages;
+global using PriceWriter.Model;
+global using PriceWriter.Services;
 global using Pricing.ServiceDefaults;
+global using Serilog;

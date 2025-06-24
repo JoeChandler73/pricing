@@ -1,8 +1,3 @@
-using Messaging.Application;
-using Messaging.Infrastructure;
-using PriceWriter.Model;
-using PriceWriter.Services;
-
 namespace PriceWriter.Extensions;
 
 public static class Extensions

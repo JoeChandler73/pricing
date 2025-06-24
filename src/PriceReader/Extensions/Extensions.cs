@@ -1,6 +1,3 @@
-using Messaging.Infrastructure;
-using PriceReader.Model;
-
 namespace PriceReader.Extensions;
 
 public static class Extensions

@@ -1,18 +1,16 @@
-using System.Collections.Concurrent;
-
 namespace PriceManager.Model;
 
 public class SubscriptionManager : ISubscriptionManager
 {
-    private readonly ConcurrentDictionary<string, byte> _symbols = new();
+    private readonly ConcurrentDictionary<string, Price> _prices = new();
     
     public void Add(string symbol)
     {
-        _symbols.TryAdd(symbol, 0);
+        _prices.TryAdd(symbol, new Price(symbol, 100, DateTime.UtcNow));
     }
 
-    public IEnumerable<string> GetSymbols()
+    public IEnumerable<Price> GetLastPrices()
     {
-        return _symbols.Keys;
+        return _prices.Values;
     }
 }
