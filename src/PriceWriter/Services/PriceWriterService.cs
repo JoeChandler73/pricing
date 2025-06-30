@@ -1,9 +1,12 @@
+using AutoMapper;
 using Caching.Application;
+using PriceWriter.Data;
 
 namespace PriceWriter.Services;
 
 public class PriceWriterService(
     IMessageBus _messageBus,
+    IPriceRepository _priceRepository,
     ICache _cache,
     ILogger<PriceWriterService> _logger) : BackgroundService
 {
@@ -19,7 +22,13 @@ public class PriceWriterService(
     {
         _logger.LogInformation("PriceWriterService received: {price}", message);
         _logger.LogInformation("PriceWriterService caching price");
+
+        var tasks = new[]
+        {
+            _cache.SetValueAsync(message.Symbol, message, CacheExpiration),
+            _priceRepository.AddPrice(message)
+        };
         
-        await _cache.SetValueAsync(message.Symbol, message, CacheExpiration);
+        await Task.WhenAll(tasks);
     }
 }
